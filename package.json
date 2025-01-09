@@ -9,7 +9,11 @@
   "author": "Bruno Saldanha",
   "license": "ISC",
   "devDependencies": {
+    "@babel/core": "^7.26.0",
+    "@babel/preset-env": "^7.26.0",
+    "browser-sync": "^3.0.3",
     "gulp": "^4.0.2",
+    "gulp-babel": "^8.0.0",
     "gulp-concat": "^2.6.1",
     "gulp-cssmin": "^0.2.0",
     "gulp-imagemin": "^7.1.0",
@@ -21,6 +25,7 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.2.1",
     "bootstrap": "^5.2.3",
+    "gulp-htmlmin": "^5.0.1",
     "jquery": "^3.6.3"
   }
 }
