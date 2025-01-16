@@ -9,8 +9,10 @@ const stripJs = require('gulp-strip-comments')
 const stripCss = require('gulp-strip-css-comments')
 const htmlmin = require('gulp-htmlmin')
 const babel = require('gulp-babel')
+const strip = require('gulp-strip-comments')
 const browserSync = require('browser-sync').create()
 const reload = browserSync.reload
+
 function tarefasCSS(cb) {
 
     gulp.src([
@@ -20,10 +22,9 @@ function tarefasCSS(cb) {
             './vendor/jquery-ui/jquery-ui.css',
             './src/css/style.css'
         ])
-        .pipe(babel({
-            comments:false,
-            presets:['@babel/env']
-        }))                   
+
+                   
+        .pipe(stripCss())
         .pipe(concat('styles.css'))         // mescla arquivos
         .pipe(cssmin())                     // minifica css
         .pipe(rename({ suffix: '.min'}))    // styles.min.css
@@ -42,7 +43,8 @@ function tarefasJS(cb){
             './vendor/jquery-ui/jquery-ui.js',
             './src/js/custom.js'
         ])
-        .pipe(stripJs())                    // remove comentários
+
+        
         .pipe(concat('scripts.js'))         // mescla arquivos
         .pipe(uglify())                     // minifica js
         .pipe(rename({ suffix: '.min'}))    // scripts.min.js
@@ -94,6 +96,7 @@ gulp.task('serve',function(){
 
 function end(cb){
     console.log('tarefas concluidas')
+    return cb()
 }
 
 const process = series(tarefasHTML, tarefasJS, tarefasCSS, end)
